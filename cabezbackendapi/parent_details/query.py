@@ -1,15 +1,39 @@
 import requests
-from config import get_hasura_endpoint, get_secret_key
+from config import get_hasura_endpoint
 
 
-def query_hasura(username: str, start_time, request_id, timestamp, role, x_hasura_user_id):
+def query_hasura(username: str, start_time, request_id, timestamp):
     """
     Queries Hasura for Parent details based on the provided account number.
     """
         # Define the GraphQL query to get Parent details
     query = """
-        query getParentDetails($accountNumber: String!) {
-                
+        query getParentDetails($username: String!) {
+            parent_details(where: {username: {_eq: $username}}) {
+                account_expiry_date
+                account_start_date
+                blood_group
+                drop_address
+                email_id
+                name
+                password
+                payment_amount
+                phone_number
+                pickup_address
+                username
+                rider_attedance {
+                    attendance_date
+                    attendance_flag
+                    rider_username
+                }
+                driver_detail {
+                    blood_group
+                    email_id
+                    identification_type
+                    name
+                    phone_number
+                }
+            }
         }
         """
         
@@ -18,7 +42,7 @@ def query_hasura(username: str, start_time, request_id, timestamp, role, x_hasur
 
     # Set the headers for the HTTP request, including the Hasura admin secret
     headers = {
-            'x-hasura-admin-secret': get_secret_key(),
+            # 'x-hasura-admin-secret': get_secret_key(),
             'Content-Type': 'application/json'
         }
 

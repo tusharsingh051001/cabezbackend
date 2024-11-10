@@ -1,12 +1,11 @@
-HASURA_ENDPOINT = "https://apiengine.dataapi.ncb.vn"
-SECRET_KEY= "f9V9&T2%0d$9E1*T"
+HASURA_ENDPOINT = "http://localhost:8080/v1/graphql"
+# SECRET_KEY= ""
 
-ADMIN_API_KEY= "admin"
-DATABASE_URL= "postgresql://postgres:postgres@10.222.1.26:5432/ncbdataapimetadata"
+# ADMIN_API_KEY= "admin"
+# DATABASE_URL= ""
 
 def get_hasura_endpoint():
-    hasura_endpoint = HASURA_ENDPOINT + "/v1/graphql"
-    return hasura_endpoint
+    return HASURA_ENDPOINT
 
-def get_secret_key():
-    return SECRET_KEY
+# def get_secret_key():
+#     return SECRET_KEY

@@ -6,7 +6,7 @@ import logging
 from pytz import timezone
 import uuid
 from parent_details.query import query_hasura
-from config import get_hasura_endpoint, get_secret_key
+from config import get_hasura_endpoint
 
 app = FastAPI()
 
@@ -32,7 +32,7 @@ async def validate_Parent(Parent_req: ParentRequest): #request: Request, api_key
     # x_hasura_user_id = api_key.x_hasura_user_id
     
     # Query Hasura for account details based on account number
-    response_data = query_hasura(Parent_req.account_number, start_time, request_id, epoch_time)
+    response_data = query_hasura(Parent_req.username, start_time, request_id, epoch_time)
 
     # Calculate the time taken for processing the request
     elapsed_time = (time.process_time() - start_time) * 1000
