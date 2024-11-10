@@ -56,3 +56,4 @@ def query_hasura(username: str, start_time, request_id, timestamp):
     # Parse the response as JSON
     response_json = response.json()
     return response_json
+# test
